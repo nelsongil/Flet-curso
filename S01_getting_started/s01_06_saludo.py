@@ -1,11 +1,12 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.window_width = 500        # window's width is 200 px
+    page.window_width = 700        # window's width is 200 px
     page.window_height = 400       # window's height is 200 px
     page.window_resizable = False  # window is not resizable
+    
     txtnombre=ft.TextField(label='Digite su nombe')
-
+    lbl_saludo =ft.Text()
 
     def saludar(e):
         if not txtnombre.value:
@@ -13,12 +14,14 @@ def main(page: ft.Page):
             txtnombre.update()
         else:
             name = txtnombre.value
-            page.add(ft.Text(f"Hello, {name}!")) 
+            lbl_saludo.value = f"Hello, {name}!"
+            page.update()
     
     
     row = ft.Row(controls=[
         txtnombre,
-        ft.ElevatedButton(text='Saludar', on_click=saludar)
+        ft.ElevatedButton(text='Saludar', on_click=saludar),
+        lbl_saludo
     ])
 
     page.add(row)

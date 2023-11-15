@@ -10,4 +10,4 @@ def main(page:ft.Page):
          if i % 500 == 0:
              page.update()
     
-ft.app(target=main, view=ft.W)
+ft.app(target=main)

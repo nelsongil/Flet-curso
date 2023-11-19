@@ -16,6 +16,9 @@ def main(page: Page):
 
     def on_login(e: LoginEvent):
         if not e.error:
+            print("Name:", page.auth.user["name"])
+            print("Login:", page.auth.user["login"])
+            print("Email:", page.auth.user["email"])
             toggle_login_buttons()
 
     def logout_button_click(e):
@@ -29,7 +32,7 @@ def main(page: Page):
         logout_button.visible = page.auth is not None
         page.update()
 
-    login_button = ElevatedButton("Login with GitHub", on_click=login_button_click)
+    login_button = ElevatedButton("Login con GitHub", on_click=login_button_click)
     logout_button = ElevatedButton("Logout", on_click=logout_button_click)
     toggle_login_buttons()
     page.on_login = on_login

@@ -1,8 +1,8 @@
 import os
 
 import flet
-import requests
-import json
+import requests # Para ver datos de usuario
+import json # para ver datos del token
 from flet import ElevatedButton, LoginEvent, Page
 from flet.auth.providers import GitHubOAuthProvider
 
@@ -27,6 +27,9 @@ def main(page: Page):
             user_repos = json.loads(repos_resp.text)
             for repo in user_repos:
                 print(repo["full_name"])
+                
+            access_token = page.auth.token.access_token
+            print(f"Access Token: {access_token}")
                 
             toggle_login_buttons()
 

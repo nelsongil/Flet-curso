@@ -1,6 +1,8 @@
 import os
 
 import flet
+import requests
+import json
 from flet import ElevatedButton, LoginEvent, Page
 from flet.auth.providers import GitHubOAuthProvider
 
@@ -19,6 +21,13 @@ def main(page: Page):
             print("Name:", page.auth.user["name"])
             print("Login:", page.auth.user["login"])
             print("Email:", page.auth.user["email"])
+            
+            headers = {"Authorization": "Bearer {}".format(page.auth.token.access_token)}
+            repos_resp = requests.get("https://api.github.com/user/repos", headers=headers)
+            user_repos = json.loads(repos_resp.text)
+            for repo in user_repos:
+                print(repo["full_name"])
+                
             toggle_login_buttons()
 
     def logout_button_click(e):

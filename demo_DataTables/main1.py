@@ -12,6 +12,7 @@ mydb = mysql.connector.connect(
 cursor = mydb.cursor()
 
 def main(page:Page):
+    page.scroll = True
     nametxt = TextField(label="Nombre")
     agetxt = TextField(label="Edad")
     
@@ -146,7 +147,7 @@ def main(page:Page):
             )
     
     
-    #Y LLAMAR A LA FUNCION CUANDO SE ABRE POR PRIMERA VEZ
+    #Y LLAMAR A LA FUNCION CUANDO SE ABRE POR PRIMERA VEZSnackBarpage.snack_bar
     load_data()
     
     def addtodb(e):
@@ -163,7 +164,10 @@ def main(page:Page):
             
             # MOSTRAR SNACKBAR
             page.snack_bar = SnackBar(
-                Text("Datos agregados satisfactoriamente", size=30, bgcolor="green")
+                content=Text("Datos agregados satisfactoriamente", size=30, style=TextStyle(color=colors.GREEN_50), bgcolor=colors.GREEN_400),
+                action="Ok!",
+                duration=1000,
+                bgcolor=colors.GREEN_400,
             )
             page.snack_bar.open = True
             page.update()
